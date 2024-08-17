@@ -10,7 +10,7 @@ var distance = 0
 
 @export var starting_length: int = 8
 @export var spawn_when_within: int = 5
-@export var space_between_parts: int = 35
+@export var space_between_parts: int = 49
 
 @export var random_rotation: bool = false
 
