@@ -27,6 +27,8 @@ shadow_enabled = true
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_of6vl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+ground_decel = 1.0
+ground_friction = 4.0
 
 [node name="Ground" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_bvwli")
