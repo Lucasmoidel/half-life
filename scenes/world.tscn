@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7l5ish61bk17"]
+[gd_scene load_steps=7 format=3 uid="uid://c7l5ish61bk17"]
 
 [ext_resource type="PackedScene" uid="uid://f6kx848g5bco" path="res://scenes/FPSController.tscn" id="1_of6vl"]
 [ext_resource type="Script" path="res://scenes/ground_maker.gd" id="2_bvwli"]
+[ext_resource type="PackedScene" uid="uid://1jpu1sysd6ed" path="res://terrain-textures/light.blend" id="3_x3c53"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vcnov"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -45,3 +46,6 @@ spawn_when_within = 6
 space_between_parts = 49
 random_rotation = true
 reset = false
+
+[node name="light" parent="." instance=ExtResource("3_x3c53")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.04302, -0.493341, 40.3917)
