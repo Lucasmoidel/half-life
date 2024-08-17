@@ -396,6 +396,7 @@ func _physics_process(delta):
 	if is_on_floor(): _last_frame_was_on_floor = Engine.get_physics_frames()
 	
 	var input_dir = Input.get_vector("left", "right", "up", "down").normalized()
+		
 	# Depending on which way you have you character facing, you may have to negate the input directions
 	wish_dir = self.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)
 	cam_aligned_wish_dir = %Camera3D.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)

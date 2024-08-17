@@ -28,4 +28,51 @@ shadow_enabled = true
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_of6vl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="terrain" parent="." instance=ExtResource("3_tqieh")]
+[node name="ground" type="Node3D" parent="."]
+
+[node name="terrain" parent="ground" instance=ExtResource("3_tqieh")]
+
+[node name="terrain2" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25.6504)
+
+[node name="terrain3" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -52.5149)
+
+[node name="terrain4" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.8645)
+
+[node name="terrain5" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 93.0548)
+
+[node name="terrain6" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 118.705)
+
+[node name="terrain7" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40.5399)
+
+[node name="terrain8" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 66.1903)
+
+[node name="terrain9" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -173.358)
+
+[node name="terrain10" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -147.708)
+
+[node name="terrain11" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -225.873)
+
+[node name="terrain12" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200.223)
+
+[node name="terrain13" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -80.3034)
+
+[node name="terrain14" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -54.6531)
+
+[node name="terrain15" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -132.818)
+
+[node name="terrain16" parent="ground" instance=ExtResource("3_tqieh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -107.168)
