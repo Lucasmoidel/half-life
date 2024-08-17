@@ -3,7 +3,7 @@ extends Node3D
 var distance = 0
 
 @onready var ground_scene = load('res://scenes/assets/train_terrain.tscn')
-
+@onready var rail_scene = load('res://scenes/assets/rail_scene.tscn')
 @export var player : Node3D
 @export var starting_length = 8
 @export var spawn_when_within = 5
@@ -20,10 +20,15 @@ func make_railroad():
 
 func new_piece():
 	var new_terrain = ground_scene.instantiate()
+	var new_rail = rail_scene.instantiate()
 	new_terrain.position = Vector3(0,0,distance*35)
+	new_rail.position = Vector3(0,0,distance*35)
 	new_terrain.name = 'Ground'+str(distance)
+	new_rail.name = 'Ground'+str(distance)
 	add_child(new_terrain)
+	add_child(new_rail)
 	new_terrain.set_owner(self)
+	new_rail.set_owner(self)
 	distance+=1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
