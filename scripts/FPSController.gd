@@ -77,20 +77,8 @@ func _headbob_effect(delta):
 
 # Smoothly interpolated controller look with acceleration and deceleration
 var _cur_controller_look = Vector2()
-func _handle_controller_look_input(delta):
-	var target_look = Input.get_vector("look_left", "look_right", "look_down", "look_up").normalized()
-	
-	if target_look.length() < _cur_controller_look.length():
-		_cur_controller_look = target_look
-	else:
-		_cur_controller_look = _cur_controller_look.lerp(target_look, 5.0 * delta)
-	
-	rotate_y(-_cur_controller_look.x * controller_look_sensitivity) # turn left and right
-	%Camera3D.rotate_x(_cur_controller_look.y * controller_look_sensitivity) # look up and down
-	%Camera3D.rotation.x = clamp(%Camera3D.rotation.x, deg_to_rad(-90), deg_to_rad(90)) # clamp up and down range
 
 func _process(delta):
-	_handle_controller_look_input(delta)
 	if get_interactable_component_at_shapecast():
 		get_interactable_component_at_shapecast().hover_cursor(self)
 		if Input.is_action_just_pressed("interact"):
