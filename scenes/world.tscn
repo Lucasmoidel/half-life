@@ -42,6 +42,4 @@ script = ExtResource("2_bvwli")
 player = NodePath("../CharacterBody3D")
 starting_length = 10
 spawn_when_within = 6
-space_between_parts = 49
-random_rotation = true
 reset = false
