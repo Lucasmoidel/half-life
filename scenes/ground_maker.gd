@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 var distance = 0
@@ -13,7 +14,7 @@ func _ready():
 # Called when the node enters the scene tree for the first time.
 func make_railroad():
 	for each in get_children():
-		print(each)
+		each.queue_free()
 	for x in range(0,starting_length):
 		new_piece()
 		

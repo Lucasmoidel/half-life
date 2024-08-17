@@ -33,4 +33,3 @@ ground_friction = 4.0
 [node name="Ground" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_bvwli")
 player = NodePath("../CharacterBody3D")
-starting_length = 10
