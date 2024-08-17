@@ -15,6 +15,12 @@ background_mode = 2
 sky = SubResource("Sky_llvkd")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.677135, 0.706609, 0.75292, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 178.5
 
 [node name="world" type="Node3D"]
 
@@ -26,9 +32,14 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_of6vl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+walk_speed = 14.0
+sprint_speed = 16.0
+ground_decel = 1.0
+ground_friction = 4.0
 
 [node name="Ground" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_bvwli")
 player = NodePath("../CharacterBody3D")
 starting_length = 10
+spawn_when_within = 6
+reset = false

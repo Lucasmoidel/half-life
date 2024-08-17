@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var auto_bhop := true
 
 const HEADBOB_MOVE_AMOUNT = 0.06
-const HEADBOB_FREQUENCY = 2.4
+const HEADBOB_FREQUENCY = 1.2
 var headbob_time := 0.0
 
 # Ground movement settings
