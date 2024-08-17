@@ -21,6 +21,7 @@ func make_railroad():
 func new_piece():
 	var new_terrain = ground_scene.instantiate()
 	new_terrain.position = Vector3(0,0,distance*35)
+	new_terrain.name = 'Ground'+str(distance)
 	add_child(new_terrain)
 	new_terrain.set_owner(self)
 	distance+=1
@@ -29,3 +30,5 @@ func new_piece():
 func _process(delta):
 	if player.position.z > (distance-spawn_when_within)*35:
 		new_piece()
+		get_child(0).queue_free()
+		
