@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5y08v73nipas"]
+[gd_scene load_steps=9 format=3 uid="uid://b5y08v73nipas"]
 
-[ext_resource type="PackedScene" uid="uid://f6kx848g5bco" path="res://scenes/FPSController.tscn" id="1_2rsln"]
+[ext_resource type="PackedScene" uid="uid://f6kx848g5bco" path="res://FPSController/FPSController.tscn" id="1_owse2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_utu4f"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,7 +18,14 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_u8hs0"]
 size = Vector3(20, 1, 20)
 
+[sub_resource type="Texture2DRD" id="Texture2DRD_ho13s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epcxc"]
+metallic = 1.0
+metallic_texture = SubResource("Texture2DRD_ho13s")
+
 [sub_resource type="BoxMesh" id="BoxMesh_bf88f"]
+material = SubResource("StandardMaterial3D_epcxc")
 custom_aabb = AABB(0, 0, 0, 1, 1, 1)
 size = Vector3(20, 1, 20)
 
@@ -27,8 +34,8 @@ size = Vector3(20, 1, 20)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_coyw6")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_2rsln")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29275, 1.21473, 0.312978)
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_owse2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27416, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.365826, 0, 0)

@@ -158,7 +158,122 @@ func _snap_down_to_stairs_check() -> void:
 			apply_floor_snap()
 			did_snap = true
 	_snapped_to_stairs_last_frame = did_snap
+
+func _snap_up_stairs_check(delta) -> bool:
+	if not is_on_floor() and not _snapped_to_stairs_last_frame: return false
+	# Don't snap stairs if trying to jump, also no need to check for stairs ahead if not moving
+	if self.velocity.y > 0 or (self.velocity * Vector3(1,0,1)).length() == 0: return false
+	var expected_move_motion = self.velocity * Vector3(1,0,1) * delta
+	var step_pos_with_clearance = self.global_transform.translated(expected_move_motion + Vector3(0, MAX_STEP_HEIGHT * 2, 0))
+	# Run a body_test_motion slightly above the pos we expect to move to, towards the floor.
+	#  We give some clearance above to ensure there's ample room for the player.
+	#  If it hits a step <= MAX_STEP_HEIGHT, we can teleport the player on top of the step
+	#  along with their intended motion forward.
+	var down_check_result = KinematicCollision3D.new()
+	if (self.test_move(step_pos_with_clearance, Vector3(0,-MAX_STEP_HEIGHT*2,0), down_check_result)
+	and (down_check_result.get_collider().is_class("StaticBody3D") or down_check_result.get_collider().is_class("CSGShape3D"))):
+		var step_height = ((step_pos_with_clearance.origin + down_check_result.get_travel()) - self.global_position).y
+		# Note I put the step_height <= 0.01 in just because I noticed it prevented some physics glitchiness
+		# 0.02 was found with trial and error. Too much and sometimes get stuck on a stair. Too little and can jitter if running into a ceiling.
+		# The normal character controller (both jolt & default) seems to be able to handled steps up of 0.1 anyway
+		if step_height > MAX_STEP_HEIGHT or step_height <= 0.01 or (down_check_result.get_position() - self.global_position).y > MAX_STEP_HEIGHT: return false
+		%StairsAheadRayCast3D.global_position = down_check_result.get_position() + Vector3(0,MAX_STEP_HEIGHT,0) + expected_move_motion.normalized() * 0.1
+		%StairsAheadRayCast3D.force_raycast_update()
+		if %StairsAheadRayCast3D.is_colliding() and not is_surface_too_steep(%StairsAheadRayCast3D.get_collision_normal()):
+			_save_camera_pos_for_smoothing()
+			self.global_position = step_pos_with_clearance.origin + down_check_result.get_travel()
+			apply_floor_snap()
+			_snapped_to_stairs_last_frame = true
+			return true
+	return false
+
+var _cur_ladder_climbing : Area3D = null
+func _handle_ladder_physics() -> bool:
+	# Keep track of whether already on ladder. If not already, check if overlapping a ladder area3d.
+	var was_climbing_ladder := _cur_ladder_climbing and _cur_ladder_climbing.overlaps_body(self)
+	if not was_climbing_ladder:
+		_cur_ladder_climbing = null
+		for ladder in get_tree().get_nodes_in_group("ladder_area3d"):
+			if ladder.overlaps_body(self):
+				_cur_ladder_climbing = ladder
+				break
+	if _cur_ladder_climbing == null:
+		return false
+	
+	# Set up variables. Most of this is going to be dependent on the player's relative position/velocity/input to the ladder.
+	var ladder_gtransform : Transform3D = _cur_ladder_climbing.global_transform
+	var pos_rel_to_ladder := ladder_gtransform.affine_inverse() * self.global_position
+	
+	var forward_move := Input.get_action_strength("up") - Input.get_action_strength("down")
+	var side_move := Input.get_action_strength("right") - Input.get_action_strength("left")
+	var ladder_forward_move = ladder_gtransform.affine_inverse().basis * %Camera3D.global_transform.basis * Vector3(0, 0, -forward_move)
+	var ladder_side_move = ladder_gtransform.affine_inverse().basis * %Camera3D.global_transform.basis * Vector3(side_move, 0, 0)
+	
+	# Strafe velocity is simple. Just take x component rel to ladder of both
+	var ladder_strafe_vel : float = climb_speed * (ladder_side_move.x + ladder_forward_move.x)
+	# For climb velocity, there are a few things to take into account:
+	# If strafing directly into the ladder, go up, if strafing away, go down
+	var ladder_climb_vel : float = climb_speed * -ladder_side_move.z
+	# When pressing forward & facing the ladder, the player likely wants to move up. Vice versa with down.
+	# So we will bias the direction (up/down) towards where we are looking by 45 degrees to give a greater margin for up/down detect.
+	var up_wish := Vector3.UP.rotated(Vector3(1,0,0), deg_to_rad(-45)).dot(ladder_forward_move)
+	ladder_climb_vel += climb_speed * up_wish
+	
+	# Only begin climbing ladders when moving towards them & prevent sticking to top of ladder when dismounting
+	# Trying to best match the player's intention when climbing on ladder
+	var should_dismount = false
+	if not was_climbing_ladder:
+		var mounting_from_top = pos_rel_to_ladder.y > _cur_ladder_climbing.get_node("TopOfLadder").position.y
+		if mounting_from_top:
+			# They could be trying to get on from the top of the ladder, or trying to leave the ladder.
+			if ladder_climb_vel > 0: should_dismount = true
+		else:
+			# If not mounting from top, they are either falling or on floor.
+			# In which case, only stick to ladder if intentionally moving towards
+			if (ladder_gtransform.affine_inverse().basis * wish_dir).z >= 0: should_dismount = true
+		# Only stick to ladder if very close. Helps make it easier to get off top & prevents camera jitter
+		if abs(pos_rel_to_ladder.z) > 0.1: should_dismount = true
+	
+	# Let player step off onto floor
+	if is_on_floor() and ladder_climb_vel <= 0: should_dismount = true
+	
+	if should_dismount:
+		_cur_ladder_climbing = null
+		return false
+	
+	# Allow jump off ladder mid climb
+	if was_climbing_ladder and Input.is_action_just_pressed("jump"):
+		self.velocity = _cur_ladder_climbing.global_transform.basis.z * jump_velocity * 1.5
+		_cur_ladder_climbing = null
+		return false
+	
+	self.velocity = ladder_gtransform.basis * Vector3(ladder_strafe_vel, ladder_climb_vel, 0)
+	#self.velocity = self.velocity.limit_length(climb_speed) # Uncomment to turn off ladder boosting
+	
+	# Snap player onto ladder
+	pos_rel_to_ladder.z = 0
+	self.global_position = ladder_gtransform * pos_rel_to_ladder
+	
+	move_and_slide()
+	return true
+
 # Returns true if player is in water, don't run normal air/ground physics in that case.
+func _handle_water_physics(delta) -> bool:
+	if get_tree().get_nodes_in_group("water_area").all(func(area): return !area.overlaps_body(self)):
+		return false
+	
+	if not is_on_floor():
+		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * 0.1 * delta
+	
+	self.velocity += cam_aligned_wish_dir * get_move_speed() * delta
+	
+	if Input.is_action_pressed("jump"):
+		self.velocity.y += swim_up_speed * delta
+	
+	# Dampen velocity when in water
+	self.velocity = self.velocity.lerp(Vector3.ZERO, 2 * delta)
+	
+	return true
 
 @onready var _original_capsule_height = $CollisionShape3D.shape.height
 func _handle_crouch(delta) -> void:
@@ -286,4 +401,22 @@ func _physics_process(delta):
 	cam_aligned_wish_dir = %Camera3D.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)
 	
 	_handle_crouch(delta)
+	
+	if not _handle_noclip(delta) and not _handle_ladder_physics():
+		if not _handle_water_physics(delta):
+			if is_on_floor() or _snapped_to_stairs_last_frame:
+				if Input.is_action_just_pressed("jump") or (auto_bhop and Input.is_action_pressed("jump")):
+					self.velocity.y = jump_velocity
+				_handle_ground_physics(delta)
+			else:
+				_handle_air_physics(delta)
+		
+		if not _snap_up_stairs_check(delta):
+			# Because _snap_up_stairs_check moves the body manually, don't call move_and_slide
+			# This should be fine since we ensure with the body_test_motion that it doesn't 
+			# collide with anything except the stairs it's moving up to.
+			_push_away_rigid_bodies() # Call before move_and_slide()
+			move_and_slide()
+			_snap_down_to_stairs_check()
+	
 	_slide_camera_smooth_back_to_origin(delta)
