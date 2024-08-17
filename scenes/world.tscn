@@ -73,4 +73,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766335, 0, 68)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766335, 0, 102.069)
 
 [node name="rail6" parent="ground/rail6" instance=ExtResource("3_kdqrv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233665, 0, 34.0694)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 34.069)
