@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://57tp62mivc6q"]
+[gd_scene load_steps=3 format=3 uid="uid://57tp62mivc6q"]
 
 [ext_resource type="PackedScene" uid="uid://cr80odn1e7jlx" path="res://terrain-textures/terrain.blend" id="1_sjpdw"]
+[ext_resource type="PackedScene" uid="uid://cvffyoaldbxn6" path="res://terrain-textures/terrain2-rail.blend" id="2_gi26r"]
 
 [node name="TrainTerrain" type="Node3D"]
 
 [node name="terrain" parent="." instance=ExtResource("1_sjpdw")]
+
+[node name="terrain2-rail" parent="." instance=ExtResource("2_gi26r")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.761185, 43.7874)
