@@ -28,7 +28,5 @@ shadow_enabled = true
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_of6vl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Ground" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+[node name="ground" type="Node3D" parent="."]
 script = ExtResource("2_bvwli")
-player = NodePath("../CharacterBody3D")
-starting_length = 10
