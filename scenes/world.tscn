@@ -26,7 +26,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_of6vl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 28.3288)
 ground_decel = 1.0
 ground_friction = 4.0
 

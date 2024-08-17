@@ -8,7 +8,7 @@ var distance = 0
 @export var player : Node3D
 @export var starting_length = 8
 @export var spawn_when_within = 5
-
+@export var reset : bool = true
 func _ready():
 	make_railroad()
 # Called when the node enters the scene tree for the first time.
@@ -32,4 +32,7 @@ func _process(delta):
 	if player.position.z > (distance-spawn_when_within)*35:
 		new_piece()
 		get_child(0).queue_free()
-		
+	if Engine.is_editor_hint() and reset == true:
+		reset = false
+		distance = 0
+		make_railroad()
