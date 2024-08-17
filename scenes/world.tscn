@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7l5ish61bk17"]
+[gd_scene load_steps=7 format=3 uid="uid://c7l5ish61bk17"]
 
 [ext_resource type="PackedScene" uid="uid://f6kx848g5bco" path="res://scenes/FPSController.tscn" id="1_of6vl"]
+[ext_resource type="PackedScene" uid="uid://d3oactpbpffe6" path="res://terrain-textures/rail.blend" id="3_kdqrv"]
 [ext_resource type="PackedScene" uid="uid://cr80odn1e7jlx" path="res://terrain-textures/terrain.blend" id="3_tqieh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vcnov"]
@@ -53,26 +54,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40.5399)
 [node name="terrain8" parent="ground" instance=ExtResource("3_tqieh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 66.1903)
 
-[node name="terrain9" parent="ground" instance=ExtResource("3_tqieh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -173.358)
+[node name="rail" parent="ground" instance=ExtResource("3_kdqrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766335, 0, 0)
 
-[node name="terrain10" parent="ground" instance=ExtResource("3_tqieh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -147.708)
+[node name="rail2" parent="ground" instance=ExtResource("3_kdqrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766335, 0, 34.0694)
 
-[node name="terrain11" parent="ground" instance=ExtResource("3_tqieh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -225.873)
+[node name="rail3" parent="ground" instance=ExtResource("3_kdqrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766335, 0, -68)
 
-[node name="terrain12" parent="ground" instance=ExtResource("3_tqieh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200.223)
+[node name="rail4" parent="ground" instance=ExtResource("3_kdqrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766335, 0, -33.9306)
 
-[node name="terrain13" parent="ground" instance=ExtResource("3_tqieh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -80.3034)
+[node name="rail5" parent="ground" instance=ExtResource("3_kdqrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766335, 0, 68)
 
-[node name="terrain14" parent="ground" instance=ExtResource("3_tqieh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -54.6531)
+[node name="rail6" parent="ground" instance=ExtResource("3_kdqrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766335, 0, 102.069)
 
-[node name="terrain15" parent="ground" instance=ExtResource("3_tqieh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -132.818)
-
-[node name="terrain16" parent="ground" instance=ExtResource("3_tqieh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -107.168)
+[node name="rail6" parent="ground/rail6" instance=ExtResource("3_kdqrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233665, 0, 34.0694)
