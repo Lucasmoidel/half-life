@@ -43,7 +43,6 @@ script = ExtResource("2_bvwli")
 player = NodePath("../CharacterBody3D")
 starting_length = 10
 spawn_when_within = 6
-random_rotation = true
 reset = false
 
 [node name="light" parent="." instance=ExtResource("3_x3c53")]
