@@ -50,4 +50,4 @@ random_rotation = true
 reset = false
 
 [node name="light" parent="." instance=ExtResource("3_x3c53")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.04302, 1.38795, 40.3917)
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 5.07996, -0.517815, 141.209)
