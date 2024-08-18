@@ -17,6 +17,7 @@ background_mode = 2
 sky = SubResource("Sky_llvkd")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.677135, 0.706609, 0.75292, 1)
 fog_density = 1.0
