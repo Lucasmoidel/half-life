@@ -4,7 +4,7 @@ extends Node3D
 var distance = 0
 
 @onready var ground_scene = load('res://scenes/assets/train_terrain.tscn')
-@onready var ground_rail_scene = load('res://scenes/assets/terain2_rail.tscn')
+@onready var ground_rail_scene = load('res://scenes/assets/terain2.tscn')
 #@onready var rail_scene = load('res://scenes/assets/rail_scene.tscn')
 @export var player : Node3D
 
