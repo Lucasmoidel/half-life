@@ -39,6 +39,7 @@ ground_decel = 1.0
 ground_friction = 4.0
 
 [node name="Ground" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.95621, 0)
 script = ExtResource("2_bvwli")
 player = NodePath("../CharacterBody3D")
 starting_length = 10
@@ -46,4 +47,4 @@ spawn_when_within = 6
 reset = false
 
 [node name="light" parent="." instance=ExtResource("3_x3c53")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.04302, -0.493341, 40.3917)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.04302, 1.38795, 40.3917)
