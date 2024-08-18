@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c7l5ish61bk17"]
 
 [ext_resource type="PackedScene" uid="uid://f6kx848g5bco" path="res://scenes/FPSController.tscn" id="1_of6vl"]
-[ext_resource type="Script" path="res://scenes/ground_maker.gd" id="2_bvwli"]
+[ext_resource type="Script" path="res://scripts/ground_maker.gd" id="2_bvwli"]
 [ext_resource type="PackedScene" uid="uid://1jpu1sysd6ed" path="res://terrain-textures/light.blend" id="3_x3c53"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vcnov"]
@@ -44,6 +44,7 @@ script = ExtResource("2_bvwli")
 player = NodePath("../CharacterBody3D")
 starting_length = 10
 spawn_when_within = 6
+random_rotation = true
 reset = false
 
 [node name="light" parent="." instance=ExtResource("3_x3c53")]
