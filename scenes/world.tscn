@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7l5ish61bk17"]
+[gd_scene load_steps=8 format=3 uid="uid://c7l5ish61bk17"]
 
 [ext_resource type="PackedScene" uid="uid://f6kx848g5bco" path="res://scenes/FPSController.tscn" id="1_of6vl"]
 [ext_resource type="Script" path="res://scripts/ground_maker.gd" id="2_bvwli"]
+[ext_resource type="PackedScene" uid="uid://c41ucw5auyvrk" path="res://scenes/assets/rail_scene.tscn" id="3_umwi7"]
 [ext_resource type="PackedScene" uid="uid://1jpu1sysd6ed" path="res://terrain-textures/light.blend" id="3_x3c53"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vcnov"]
@@ -41,6 +42,7 @@ ground_friction = 4.0
 [node name="Ground" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.95621, 0)
 script = ExtResource("2_bvwli")
+rail_scene = ExtResource("3_umwi7")
 player = NodePath("../CharacterBody3D")
 starting_length = 10
 spawn_when_within = 6
