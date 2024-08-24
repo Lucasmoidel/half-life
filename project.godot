@@ -18,7 +18,11 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=768
+window/size/viewport_height=432
 window/size/mode=3
+window/size/resizable=false
+window/stretch/mode="viewport"
 window/volumetric_fog/volume_depth=256
 window/volumetric_fog/volume_size=256
 
@@ -105,7 +109,6 @@ look_down={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 environment/volumetric_fog/volume_size=256
 environment/volumetric_fog/volume_depth=256
-anti_aliasing/quality/msaa_2d=3
-anti_aliasing/quality/msaa_3d=3
