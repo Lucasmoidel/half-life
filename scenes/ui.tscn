@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://bbqx84jhlqwwn"]
+[gd_scene format=3 uid="uid://bbqx84jhlqwwn"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -7,6 +7,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -14,10 +15,13 @@ offset_left = 383.0
 offset_top = 211.0
 offset_right = 385.0
 offset_bottom = 221.0
+mouse_filter = 2
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = 389.0
 offset_top = 215.0
 offset_right = 391.0
 offset_bottom = 225.0
 rotation = 1.5708
+mouse_filter = 2

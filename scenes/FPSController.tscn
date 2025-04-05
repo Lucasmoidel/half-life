@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://f6kx848g5bco"]
 
-[ext_resource type="Script" uid="uid://dn033urenfn56" path="res://scripts/FPSController.gd" id="1_o4fvy"]
+[ext_resource type="Script" uid="uid://bfttdqsd2ob48" path="res://scripts/FPSController.gd" id="1_o4fvy"]
 [ext_resource type="PackedScene" uid="uid://bbqx84jhlqwwn" path="res://scenes/ui.tscn" id="2_jr1ti"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_60k8k"]
@@ -39,6 +39,7 @@ unique_name_in_owner = true
 cull_mask = 1048573
 
 [node name="UI" parent="HeadOriginalPosition/Head/CameraSmooth/Camera3D" instance=ExtResource("2_jr1ti")]
+mouse_filter = 2
 
 [node name="InteractShapeCast3D" type="ShapeCast3D" parent="HeadOriginalPosition/Head/CameraSmooth/Camera3D"]
 unique_name_in_owner = true
