@@ -2,14 +2,14 @@
 
 [ext_resource type="Material" uid="uid://bk7nbd8td4gb1" path="res://textures/grey_checkerboard_mat.tres" id="1_1bstl"]
 [ext_resource type="PackedScene" uid="uid://f6kx848g5bco" path="res://scenes/FPSController.tscn" id="1_2lyst"]
-[ext_resource type="PackedScene" path="res://scenes/ladder.tscn" id="2_3t0s4"]
+[ext_resource type="PackedScene" uid="uid://b1ovqgjwms7u4" path="res://scenes/ladder.tscn" id="2_3t0s4"]
 [ext_resource type="Texture2D" uid="uid://d1uelfks0ip1w" path="res://textures/grid_image.png" id="2_uym2f"]
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="3_2shvn"]
 [ext_resource type="ArrayMesh" uid="uid://dry23jeo6prdo" path="res://models/terrain_mesh.mesh" id="4_t8olv"]
 [ext_resource type="Texture2D" uid="uid://c7yth5opetwes" path="res://textures/kenney-dark-grey-checkerboard-cc0.png" id="5_pnti6"]
 [ext_resource type="Texture2D" uid="uid://b28c62e3f23vb" path="res://textures/kenney-orange-checkerboard-cc0.png" id="6_s6lf8"]
 [ext_resource type="PackedScene" uid="uid://ca0wevg1lb4rx" path="res://utils/WaterMaker3D/WaterMaker3D.tscn" id="8_yjcdx"]
-[ext_resource type="Script" path="res://scripts/InteractableComponent.gd" id="9_epvnr"]
+[ext_resource type="Script" uid="uid://5lanlje07m1x" path="res://scripts/InteractableComponent.gd" id="9_epvnr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwjpn"]
 
@@ -159,7 +159,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_y1x2m")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2t6ga"]
-load_path = "res://.godot/imported/kenney-dark-grey-checkerboard.png-00e9b0b11b2507c2a2b7138ee6bc7fbe.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hul2"]
 albedo_texture = SubResource("CompressedTexture2D_2t6ga")
@@ -437,7 +436,7 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.2, 1, 0, -0.000830607, 0, 0.
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_28mlf"]
 _data = {
-"ButtonPress": SubResource("Animation_ae5be")
+&"ButtonPress": SubResource("Animation_ae5be")
 }
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t86ba"]
@@ -510,8 +509,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n6uee"]
 _data = {
-"RESET": SubResource("Animation_n3ecy"),
-"open": SubResource("Animation_7w581")
+&"RESET": SubResource("Animation_n3ecy"),
+&"open": SubResource("Animation_7w581")
 }
 
 [node name="World" type="Node3D"]
