@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3tl0tnijsq8v"]
+
+[ext_resource type="Texture2D" uid="uid://dr7w2us1efe21" path="res://textures/ChainlinkFence01 _1K/Chainlink01 _Color2_1K.png" id="1_tfn3b"]
+[ext_resource type="Texture2D" uid="uid://csn5nxnat373a" path="res://textures/ChainlinkFence01 _1K/Chainlink01 _Height_1K.png" id="2_x3tcu"]
+[ext_resource type="Texture2D" uid="uid://dvxyeujrun36c" path="res://textures/ChainlinkFence01 _1K/Chainlink01 _NM_1K.png" id="3_kcdxb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tfn3b"]
+size = Vector3(0.170654, 4.99213, 8.15698)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_yh20h"]
+blend_mode = 1
+depth_draw_mode = 1
+no_depth_test = true
+albedo_texture = ExtResource("1_tfn3b")
+normal_enabled = true
+normal_scale = 4.35
+normal_texture = ExtResource("3_kcdxb")
+heightmap_enabled = true
+heightmap_scale = 0.268
+heightmap_texture = ExtResource("2_x3tcu")
+heightmap_flip_texture = true
+uv1_scale = Vector3(2.95, 2.95, 2.95)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uf0dc"]
+material = SubResource("ORMMaterial3D_yh20h")
+size = Vector3(0.1, 5, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tfn3b"]
+size = Vector3(0.15, 5, 0.15)
+
+[node name="ChainFence" type="Node3D"]
+
+[node name="Collider" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 4)
+
+[node name="shape" type="CollisionShape3D" parent="Collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00402832, -0.00442505, -3.99353)
+shape = SubResource("BoxShape3D_tfn3b")
+
+[node name="chain-fence" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 2.08616e-07, 0, 1, 0, -2.08616e-07, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_uf0dc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -4)
+mesh = SubResource("BoxMesh_tfn3b")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 4)
+mesh = SubResource("BoxMesh_tfn3b")
