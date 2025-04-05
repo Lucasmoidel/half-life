@@ -1,4 +1,5 @@
-## Import From SimpleGrassTextured
+# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
+# Import From SimpleGrassTextured
 # 
 # This script demonstrates how to import transforms from SimpleGrassTextured. To use it:
 #
@@ -10,7 +11,7 @@
 # 1. Click import. The output window and console will report when finished.
 # 1. Clear the script from your Terrain3D node, and save your scene. 
 #
-# The instance transforms are now stored in your Storage resource.
+# The instance transforms are now stored in your region files.
 #
 # Use clear_instances to erase all instances that match the assign_mesh_id.
 #

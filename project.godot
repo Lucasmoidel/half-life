@@ -26,6 +26,10 @@ window/stretch/mode="viewport"
 window/volumetric_fog/volume_depth=256
 window/volumetric_fog/volume_size=256
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+
 [input]
 
 left={
